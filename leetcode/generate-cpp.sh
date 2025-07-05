@@ -2,8 +2,8 @@
 templatefile="00-solution-template.cpp"
 bname=`basename $0`
 
-if [ $# -lt 1 ];then
-    echo "./$bname '1. Two Sum' => 1-Two-Sum.cpp"
+if [ $# -lt 2 ];then
+    echo "./$bname $dir '1. Two Sum' => 1-Two-Sum.cpp"
     exit 0
 fi
 
@@ -13,12 +13,12 @@ function get_filename(){
 
 curdir=`dirname $0`
 targetdir=$curdir
-if [ ! -z "$2" ];then
-    echo "dirname $2"
-    targetdir="$2"
+if [ ! -z "$1" ];then
+    echo "dirname $1"
+    targetdir="$1"
 fi
 
-name=`get_filename "$1" `
+name=`get_filename "$2" `
 echo "filename:${name}"
 
 src="$curdir/$templatefile"

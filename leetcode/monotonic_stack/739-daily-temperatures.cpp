@@ -20,7 +20,7 @@ class Solution {
         for (int i = 0; i < size; ++i) {
             while (!st.empty() && A[st.top()] < A[i]) {
                 auto j = st.top();
-                printf("i: %d, j: %d, A[i]: %d, A[j]: %d\n", i, j, A[i], A[j]);
+                // printf("i: %d, j: %d, A[i]: %d, A[j]: %d\n", i, j, A[i], A[j]);
                 st.pop();
                 ret[j] = i - j;
             }

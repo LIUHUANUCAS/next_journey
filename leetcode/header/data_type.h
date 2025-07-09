@@ -154,6 +154,7 @@ struct ListNode {
     int val;
     ListNode* next;
     ListNode(int x = 0) : val(x), next(NULL) {}
+    ListNode(int x, ListNode* n) : val(x), next(n) {}
     static ListNode* create_list(vector<int>& A) {
         ListNode dumpy(0);
         ListNode* p = &dumpy;
@@ -163,7 +164,35 @@ struct ListNode {
         }
         return dumpy.next;
     }
+    static ListNode* create_list(vector<int> A) {
+        ListNode dumpy(0);
+        ListNode* p = &dumpy;
+        for (auto v : A) {
+            p->next = new ListNode(v);
+            p = p->next;
+        }
+        return dumpy.next;
+    }
 };
+
+ListNode* create_linked_list(vector<int> A) {
+    ListNode dumpy(0);
+    ListNode* p = &dumpy;
+    for (auto v : A) {
+        p->next = new ListNode(v);
+        p = p->next;
+    }
+    return dumpy.next;
+}
+
+vector<ListNode*> create_linked_list(vector<vector<int>>& A) {
+    vector<ListNode*> lists;
+    for (auto& v : A) {
+        ListNode* p = create_linked_list(v);
+        lists.push_back(p);
+    }
+    return lists;
+}
 
 struct StringType {
     string key;
@@ -182,6 +211,10 @@ void print_list(ListNode* p) {
             cout << " ";
     }
     cout << "]" << endl;
+}
+
+void print_linked_list(ListNode* p) {
+    print_list(p);
 }
 
 void printvector_index(vector<int>& array) {

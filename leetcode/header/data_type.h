@@ -10,17 +10,17 @@ using namespace std;
 #define DEBUG 1
 static int Debug = 0;
 
-// Definition for a Node.
-struct Node {
-    int val;
-    Node* next;
-    Node* random;
-    Node(int _val = 0) {
-        val = _val;
-        next = NULL;
-        random = NULL;
-    }
-};
+// // Definition for a Node.
+// struct Node {
+//     int val;
+//     Node* next;
+//     Node* random;
+//     Node(int _val = 0) {
+//         val = _val;
+//         next = NULL;
+//         random = NULL;
+//     }
+// };
 
 struct TreeNode {
     int val;

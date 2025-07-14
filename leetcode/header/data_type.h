@@ -194,6 +194,15 @@ vector<ListNode*> create_linked_list(vector<vector<int>>& A) {
     return lists;
 }
 
+ListNode* get_linked_list_node(ListNode* head, int index) {
+    if (head == nullptr)
+        return nullptr;
+    auto p = head;
+    while (--index > 0 && p != nullptr) {
+        p = p->next;
+    }
+    return p;
+}
 struct StringType {
     string key;
     int idx;

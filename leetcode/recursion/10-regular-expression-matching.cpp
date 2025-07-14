@@ -21,8 +21,7 @@ class Solution {
     }
     bool dfs(string& s, int i, string& p, int j) {
         int m = s.size(), n = p.size();
-        if (i == m && j == n)
-            return true;
+        if (i == m && j == n) return true;
         string key = to_string(i) + "_" + to_string(j);
         if (i == m) {
             return memo[key] = empty(p, j);
@@ -68,8 +67,7 @@ class Solution {
             if (j > 0 && s[i] != p[j - 1]) {
                 return memo[key] = dfs(s, i, p, j + 1);
             }
-            if (j == 0)
-                return memo[key] = dfs(s, i, p, j + 1);
+            if (j == 0) return memo[key] = dfs(s, i, p, j + 1);
         }
         if (s[i] != p[j]) {
             if (j + 1 < n && p[j + 1] == '*') {
@@ -83,19 +81,29 @@ class Solution {
 
     bool empty(string& p, int j) {
         int n = p.size();
-        if (j >= n)
-            return true;
+        if (j >= n) return true;
         if (p[j] == '*') {
             return empty(p, j + 1);
         }
         if (p[j] != '*') {
-            if (j + 1 < n && p[j + 1] == '*')
-                return empty(p, j + 2);
+            if (j + 1 < n && p[j + 1] == '*') return empty(p, j + 2);
             if (j + 1 < n && p[j + 1] != '*') {
                 return false;
             }
         }
         return false;
+    }
+
+    bool isMatch2(string text, string pattern) {
+        if (pattern.empty()) return text.empty();
+        auto first_match =
+            !text.empty() && (pattern[0] == text[0] || pattern[0] == '.');
+        if (pattern.size() >= 2 && pattern[1] == '*') {
+            return isMatch(text, pattern.substr(2)) ||
+                   (first_match && isMatch(text.substr(1), pattern));
+        } else {
+            return (first_match && isMatch(text.substr(1), pattern.substr(1)));
+        }
     }
 };
 

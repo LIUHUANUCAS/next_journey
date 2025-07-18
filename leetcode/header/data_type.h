@@ -271,6 +271,15 @@ void printvector(vector<T>& array) {
     cout << "]" << endl;
 }
 
+template <typename T, typename S>
+void printmap(unordered_map<T, S>& umap) {
+    cout << "{";
+    for (auto it = umap.begin(); it != umap.end(); ++it) {
+        cout << "[" << it->first << ":" << it->second << "] ";
+    }
+    cout << "}" << endl;
+}
+
 template <typename T>
 void printvector(vector<vector<T>>& array) {
     cout << "{";

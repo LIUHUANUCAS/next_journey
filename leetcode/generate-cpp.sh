@@ -23,6 +23,6 @@ echo "filename:${name}"
 
 src="$curdir/$templatefile"
 dest="${targetdir}/${name}"
-
+mkdir -p "${targetdir}"
 echo "$src => $dest"
 cp  "${src}" "${dest}"

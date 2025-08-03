@@ -2,6 +2,7 @@
 #include <cstdarg>
 #include <cstdio>
 #include <iostream>
+#include <list>
 #include <queue>
 #include <sstream>
 #include <vector>
@@ -241,17 +242,24 @@ void printvector_index(vector<int>& array) {
 void printvector(vector<int>& array, int lo, int hi) {
     cout << "{";
     for (int i = lo; i < hi; ++i) {
-        cout << array[i] << " ";
+        cout << array[i];
+        if (i != hi - 1)
+            cout << ", ";
+    }
+    cout << "}" << endl;
+}
+
+template <class Interator>
+void printvector(Interator begin, Interator end) {
+    cout << "{";
+    for (auto it = begin; it != end; ++it) {
+        cout << *it << (it + 1 != end ? ", " : "");
     }
     cout << "}" << endl;
 }
 
 void printvector(vector<int>& array) {
-    cout << "{";
-    for (auto it = array.begin(); it != array.end(); ++it) {
-        cout << *it << (it + 1 != array.end() ? "," : "");
-    }
-    cout << "}" << endl;
+    printvector(array.begin(), array.end());
 }
 
 void printvector(vector<char>& array) {
@@ -290,8 +298,9 @@ void printvector(vector<vector<T>>& array) {
 }
 
 void printvector(vector<vector<int>>& array) {
-    cout << "{";
+    cout << "{ \n";
     for (auto e : array) {
+        cout << "  ";
         printvector(e);
     }
     cout << "}" << endl;

@@ -299,7 +299,7 @@ void printvector(vector<vector<T>>& array) {
 
 void printvector(vector<vector<int>>& array) {
     cout << "{ \n";
-    for (auto e : array) {
+    for (auto& e : array) {
         cout << "  ";
         printvector(e);
     }

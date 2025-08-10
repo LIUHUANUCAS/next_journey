@@ -258,24 +258,14 @@ void printvector(Interator begin, Interator end) {
     cout << "}" << endl;
 }
 
-void printvector(vector<int>& array) {
-    printvector(array.begin(), array.end());
-}
-
-void printvector(vector<char>& array) {
-    cout << "{";
-    for (auto e : array) {
-        cout << e << " ";
-    }
-    cout << "}" << endl;
-}
-
 template <typename T>
-void printvector(vector<T>& array) {
+void printvector(vector<T>& array, int indent = 0) {
+    cout << string(indent, ' ');
     cout << "[";
     for (auto it = array.begin(); it != array.end(); ++it) {
         cout << *it << (it + 1 != array.end() ? "," : "");
     }
+
     cout << "]" << endl;
 }
 
@@ -290,20 +280,11 @@ void printmap(unordered_map<T, S>& umap) {
 
 template <typename T>
 void printvector(vector<vector<T>>& array) {
-    cout << "{";
-    for (auto e : array) {
-        printvector(e);
-    }
-    cout << "}" << endl;
-}
-
-void printvector(vector<vector<int>>& array) {
-    cout << "{ \n";
+    cout << "[\n";
     for (auto& e : array) {
-        cout << "  ";
-        printvector(e);
+        printvector(e, 3);
     }
-    cout << "}" << endl;
+    cout << "]" << endl;
 }
 
 void print_tree(TreeNode* p, int x) {

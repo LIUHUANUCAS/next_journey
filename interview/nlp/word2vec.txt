@@ -1,0 +1,10 @@
+word to vector
+
+
+[context1, context2, word(target), context3, context4]
+p(+|(w,c2)) = 
+P(+|(w,c[2,3])) =  w出现在windows 内的概率
+依据window的context word 预测target
+使用余弦距离
+使用sigmoid函数转化为概率
+多个context

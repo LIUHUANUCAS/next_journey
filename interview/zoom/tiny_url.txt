@@ -1,0 +1,48 @@
+requirements:
+1. long url -> short url 
+2. TTL = 6month not visited
+
+3. qps : read = 20000 qps
+write = 1000 qps
+
+1000 qps * 60*60* 24 * 30*6
+
+15G * 50B -> 1000G 存储内容
+
+6 机器
+3G 量 
+
+number % 6 = [0,5] 
+
+一致性哈希：
+[4-5] -> machine:node5[0-4.5], node6:[4.5-5]
+
+
+APIs:
+string create_short_url(api_key, long_url,timestamp)
+string get_short_url(api_key, short_url)
+
+client -> short_url -> 301 with long url -> visit long url.
+
+
+number = hash(long_url)
+					  string to(number);
+return get_short_string(string)
+
+map[short] = long
+visite short->long
+client->APP server -> DB proxy: DB(short url->long)
+
+
+DBproxy: 
+read: 
+write:
+
+
+client->short
+url(msg, timestamp) -> msg_ queue -> consume->table2
+
+table1 : short->long read
+table2 : short->TTL, 异步来写
+clean : 6month->异步来做
+read table2 and delete table1

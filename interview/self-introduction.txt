@@ -1,0 +1,5 @@
+1. I graduated from the Institute of Computing Technology, Chinese Academy of Sciences in 2017 
+2. and began my career at Tencent as a software engineer. 
+3. After nearly four years at Tencent, I joined Hotstar, where I focus on the Watch Page. 
+4. I have led the design of the Watch Page BFF architecture 
+5. and driven key optimizations to enhance performance and user experience.

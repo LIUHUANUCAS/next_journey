@@ -54,5 +54,6 @@ int main() {
         auto r = so.searchInsert(A, target);
         cout << r << endl;
     }
+
     return 0;
 }

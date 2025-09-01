@@ -280,6 +280,10 @@ void printmap(unordered_map<T, S>& umap) {
 
 template <typename T>
 void printvector(vector<vector<T>>& array) {
+    if (array.empty()) {
+        cout << "[]" << endl;
+        return;
+    }
     cout << "[\n";
     for (auto& e : array) {
         printvector(e, 3);

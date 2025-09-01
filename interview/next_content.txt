@@ -1,0 +1,8 @@
+
+
+1. ai agent
+2. MCP 
+3. design a tiny url system
+4. DynamoDB
+5. Bigtable
+6. LB algorithm

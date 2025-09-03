@@ -10,7 +10,7 @@ write = 1000 qps
 15G * 50B -> 1000G 存储内容
 
 6 机器
-3G 量 
+300G 量 
 
 number % 6 = [0,5] 
 
@@ -34,15 +34,30 @@ visite short->long
 client->APP server -> DB proxy: DB(short url->long)
 
 
-DBproxy: 
+DBproxy:  代理DB操作，并进行分片路由
 read: 
 write:
 
+client ->LB -> APPServer -> LB -> DBProxy -> DB 
+ 						 -> Cache -> DB 
 
-client->short
+客户端 -> TinyURL 服务
+      -> Redis 缓存（命中直接返回）
+      -> 未命中 -> 数据库查找 -> 回写缓存
+读瓶颈： 使用redis cache缓存 + bloom filter  + CDN 
+写瓶颈： 分布式ID生成 + 批量段号分配
+
+DB瓶颈： 读写分离 + 消息队列异步写
+
+存储瓶颈： 数据分片 分库/分表
+架构层面： 拆分服务 + 异步写入 + 自动扩容
+
+
+自动清理冷数据URL: > 6month
+client -> short
 url(msg, timestamp) -> msg_ queue -> consume->table2
 
-table1 : short->long read
-table2 : short->TTL, 异步来写
+table1 : short -> long read
+table2 : short -> TTL, 异步来写
 clean : 6month->异步来做
 read table2 and delete table1

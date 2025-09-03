@@ -1,0 +1,58 @@
+主要问项目
+1. 技术选型标准: 选择BFF架构的时候，出于什么考虑，以及在当时的角色
+	1). 可以后端来驱动
+	2). 统一后端接口
+	3). 参考netflix技术博客，技术方案讨论和一些POC
+2、最具有挑战的事情: 
+	1). watch page cache,抗住高并发最主要的工具
+	2). playback token是不可缓存的，单独找到PC team，了解PC架构，拆解token并提出解决方案，把token放在cdn那一侧
+
+3、ai工具使用：平时使用的是什么工具
+	1). 主要还是写代码
+	2). 项目解析
+	3). Debug
+4、架构的迭代： [Player,others]:
+	1. Player部分并没有太多的变化
+	2. others, 推荐的部分，提出了延迟加载，动态变换，千人千面
+5、高并发情况下做的事情
+	1). 全链路压测: 流量投影、依据请求量自动扩容
+	2). enable cache: page cache, space/widget cache
+	3). 上传 panic， fallback逻辑
+6、risk攻击： 主要还是user级别的
+	authGW: 
+		1). token validation(include rate limitting) 
+		2). passport enrich 
+		3). token enforce(risk engine block)
+
+7、这几年的角色转变
+	1). 21-22年年底： 主要还是产品需求和写代码
+	2). 23年年初开始： 带人做项目，主要对接产品、architect、输出技术文档、参与技术讨论
+8、下一步职业规划，优势和主要提高的部分
+	1). 主要擅长技术层面，技术文档，代码review等等
+	2). 管人方面还需要提高
+9. DB的选型
+10. 服务部署： aws 
+11. 有没有了解其他的架构
+12. 总结下当前结构的特点
+   1). 后端驱动
+   2). 读多写少的服务
+   3). 数据驱动
+
+
+平时用的技术栈：
+- gocd pipeline
+- harness pipeline
+- grafana 监控
+- jira, confluence wiki
+- k8s
+- 
+
+项目管理方式：
+- jira track task 进度
+- sprint planning 项目规划
+- 季度项目评审
+- WBR: 每周同步各个feature进度，以及blocker
+- dependency 管理，每个quater 提dependency 
+- Live issue RCA
+- weekly sync internal
+- daily standup: work items, blockers, progress etc.
